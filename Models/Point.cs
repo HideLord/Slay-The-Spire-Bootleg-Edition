@@ -10,7 +10,7 @@ namespace AlgoVis.Models
 	/// Basic class containing information about a point.
 	/// What did you expect
 	/// </summary>
-    class Point
+    public class Point
     {
 		public int x { get; set; }
 		public int y { get; set; }
@@ -24,7 +24,7 @@ namespace AlgoVis.Models
 			A.x = x;
 			A.y = y;
 		}
-		public void copyFrom(ref Point A)
+		public void copyFrom(Point A)
 		{
 			x = A.x;
 			y = A.y;

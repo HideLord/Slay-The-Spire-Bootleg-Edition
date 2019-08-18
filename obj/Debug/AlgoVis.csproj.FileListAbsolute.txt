@@ -1,0 +1,16 @@
+C:\Users\HideLord\source\repos\AlgoVis\bin\Debug\AlgoVis.exe.config
+C:\Users\HideLord\source\repos\AlgoVis\bin\Debug\AlgoVis.exe
+C:\Users\HideLord\source\repos\AlgoVis\bin\Debug\AlgoVis.pdb
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\AlgoVis.csprojAssemblyReference.cache
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\MainWindow.g.cs
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\App.g.cs
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\AlgoVis_MarkupCompile.cache
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\AlgoVis_MarkupCompile.lref
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\MainWindow.baml
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\AlgoVis.g.resources
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\AlgoVis.Properties.Resources.resources
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\AlgoVis.csproj.GenerateResource.cache
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\AlgoVis.csproj.CoreCompileInputs.cache
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\AlgoVis.csproj.Fody.CopyLocal.cache
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\AlgoVis.exe
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\AlgoVis.pdb

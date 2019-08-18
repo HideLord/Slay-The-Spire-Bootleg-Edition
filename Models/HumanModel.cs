@@ -15,7 +15,7 @@ namespace AlgoVis.Models
 		public Point Coords
 		{
 			get { return Coords; }
-			set{ Coords.copyFrom(value as Point);}
+			set{ Coords.copyFrom(value as Point); }
 		}
     }
 }
