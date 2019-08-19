@@ -11,6 +11,6 @@ namespace AlgoVis.Models
 	/// </summary>
 	public abstract class Card
 	{
-
+		public int shopValue { get; set; }
 	}
 }
