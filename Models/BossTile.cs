@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace AlgoVis.Models
 {
-	public class TreasureTile : Tile
+	public class BossTile : Tile
 	{
+		public List<Trinket> Trinkets;
 		public List<Card> Deck;
 
 		public override void Activate()

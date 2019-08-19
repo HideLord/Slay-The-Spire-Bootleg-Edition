@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AlgoVis.Models
 {
 	/// <summary>
-	/// A base class for any Item be it weapon or accessory
+	/// A base class for any Card be it weapon, utility or defence
 	/// </summary>
 	public abstract class Card
 	{

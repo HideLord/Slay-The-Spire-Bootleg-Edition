@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace AlgoVis.Models
 {
-	public abstract class Tile {
-		public
-
-		void Activate();
-
+	/// <summary>
+	/// Just a base model for all of the tiles
+	/// </summary>
+	public class Tile {
+		public Tile()
+		{
+			Neighbours = new List<Tile>();
+		}
+		public List<Tile> Neighbours;
+		public virtual void Activate()
+		{
+			throw new NotImplementedException();
+		}
     }
 }

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:AlgoVis"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        KeyDown="OnKeyDownHandler">
+        KeyDown="OnKeyDownHandler"
+        KeyUp="OnKeyUpHandler">
 
     <Grid>
         <Grid.ColumnDefinitions>

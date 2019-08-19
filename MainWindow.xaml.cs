@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using AlgoVis.Models;
 
 namespace AlgoVis
 {
@@ -16,35 +17,22 @@ namespace AlgoVis
 		{
 			InitializeComponent();
 			CompositionTarget.Rendering += GameLoop;
-
+			var Spawn = Generator.GenerateMap(10, 1, 1);
 		}
 
 		private void OnKeyDownHandler(object sender, KeyEventArgs e)
 		{
-			var win = sender as Window;
-			if (e.Key == Key.W) // Go up
-			{
-				Console.WriteLine("W");
-			}
-			if(e.Key == Key.A) // Go left
-			{
-
-			}
-			if(e.Key == Key.S) // Go down
-			{
-
-			}
-			if(e.Key == Key.D) // Go Right
-			{
-
-			}
+			
 		}
 		private void OnKeyUpHandler(object sender, KeyEventArgs e)
 		{
-			if (e.Key == Key.E ||
-				e.Key == Key.Escape) // Set Key as down
+			if (e.Key == Key.E) // Interact
 			{
-				KeyIsDown[e.Key] = true;
+
+			}
+			if (e.Key == Key.Escape) // Show game menu
+			{
+
 			}
 		}
 		private void GameLoop(object sender, System.EventArgs e)

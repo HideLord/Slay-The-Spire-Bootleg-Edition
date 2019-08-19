@@ -61,10 +61,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\BossTile.cs" />
+    <Compile Include="Models\Generator.cs" />
     <Compile Include="Models\HumanModel.cs" />
+    <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\CardWeapon.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Models\Tile.cs" />
-    <Compile Include="Models\TileType.cs" />
+    <Compile Include="Models\TreasureTile.cs" />
+    <Compile Include="Models\Trinket.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
