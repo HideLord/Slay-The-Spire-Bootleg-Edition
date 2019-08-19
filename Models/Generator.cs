@@ -35,11 +35,9 @@ namespace AlgoVis.Models
 		{
 			throw new NotImplementedException();
 		}
-		public static Tile GenerateMap(int NumTiles, int NumTreasures, int NumBosses)
+		public static Tile GenerateMap(int NumTiles, int NumTreasures, int NumElites)
 		{
-			Debug.Assert(NumTiles > 1);
-			Debug.Assert(NumTreasures > 0);
-			Debug.Assert(NumBosses > 0);
+			Debug.Assert(NumTiles > NumElites+NumTreasures+1); // Check if the number of tiles can contain all of the Elites, Treasures and the final boss
 
 			Tile Spawn = new Tile();
 			Queue<Tile> MapTree = new Queue<Tile>();
@@ -51,16 +49,17 @@ namespace AlgoVis.Models
 
 			for (int i = 0; i < NumTreasures; i++)
 			{
-				int randomPos = GenerateRandomInt(NumTiles);
+				int randomPos = GenerateRandomInt(1,NumTiles);
 				while (tileIndexer[randomPos] != 1) { randomPos = GenerateRandomInt(NumTiles); }
 				tileIndexer[randomPos] = 2;
 			}
-			for (int i = 0; i < NumBosses; i++)
+			for (int i = 0; i < NumElites; i++)
 			{
-				int randomPos = GenerateRandomInt(NumTiles);
+				int randomPos = GenerateRandomInt(1,NumTiles);
 				while (tileIndexer[randomPos]!=1){ randomPos = GenerateRandomInt(NumTiles); }
 				tileIndexer[randomPos] = 3;
 			}
+			tileIndexer[0] = 4;
 
 			while(MapTree.Count != 0)
 			{
@@ -68,26 +67,40 @@ namespace AlgoVis.Models
 				int NeighbourNum = Math.Min(NumTiles, GenerateRandomInt(1, 5 - curr.Neighbours.Count));
 				for(int i = 0; i < NeighbourNum; i++, NumTiles--)
 				{
-					switch (tileIndexer[NumTiles])
+					switch (tileIndexer[NumTiles-1])
 					{
 						case 1:// Default Tile
-							curr.Neighbours.Add(new Tile());
+							curr.Neighbours.Add(new EnemyTile());
+							curr.Neighbours[curr.Neighbours.Count - 1].Neighbours.Add(curr);
+
 							MapTree.Enqueue(curr.Neighbours[curr.Neighbours.Count - 1]);
+
 							break;
 						case 2:// Treasure Tile
 							curr.Neighbours.Add(new TreasureTile());
+							curr.Neighbours[curr.Neighbours.Count - 1].Neighbours.Add(curr);
+
 							MapTree.Enqueue(curr.Neighbours[curr.Neighbours.Count - 1]);
 							break;
-						case 3:// Boss Tile
-							curr.Neighbours.Add(new BossTile());
+						case 3:// Elite Tile
+							curr.Neighbours.Add(new EliteTile());
+							curr.Neighbours[curr.Neighbours.Count - 1].Neighbours.Add(curr);
+
 							MapTree.Enqueue(curr.Neighbours[curr.Neighbours.Count - 1]);
+							break;
+						case 4:
+							curr.Neighbours.Add(new BossTile()); //Since it's a boss cell it shouldn't have any Neighbours
+							curr.Neighbours[curr.Neighbours.Count - 1].Neighbours.Add(curr);
+
 							break;
 					}
 				}
+				
 			}
-
+			
 			return Spawn;
 		}
+
 
 	}
 }

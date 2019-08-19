@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AlgoVis.Models
 {
-	public class BossTile : EnemyTile
+	class EliteTile : EnemyTile
 	{
 		public List<Trinket> Trinkets;
 
