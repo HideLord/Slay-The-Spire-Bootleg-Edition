@@ -17,7 +17,7 @@ namespace AlgoVis
 		{
 			InitializeComponent();
 			CompositionTarget.Rendering += GameLoop;
-			var Spawn = Generator.GenerateMap(10, 1, 1);
+			var Spawn = Generator.GenerateMapSpire(16, 5, 3, 5, 10);
 		}
 
 		private void OnKeyDownHandler(object sender, KeyEventArgs e)

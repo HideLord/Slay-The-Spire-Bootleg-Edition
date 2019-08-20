@@ -65,6 +65,7 @@
     <Compile Include="Models\EliteTile.cs" />
     <Compile Include="Models\Enemy.cs" />
     <Compile Include="Models\EnemyTile.cs" />
+    <Compile Include="Models\EventTile.cs" />
     <Compile Include="Models\Generator.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\CardWeapon.cs" />
@@ -72,6 +73,21 @@
     <Compile Include="Models\Tile.cs" />
     <Compile Include="Models\TreasureTile.cs" />
     <Compile Include="Models\Trinket.cs" />
+    <Compile Include="Pages\Game.xaml.cs">
+      <DependentUpon>Game.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GameMenu.xaml.cs">
+      <DependentUpon>GameMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MapPage.xaml.cs">
+      <DependentUpon>MapPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shop.xaml.cs">
+      <DependentUpon>Shop.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
     <Page Include="MainWindow.xaml">
@@ -86,6 +102,26 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Game.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\GameMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MapPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Shop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -114,9 +150,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Images\PlankFloor.png" />
+    <Resource Include="Images\BossIcon.gif" />
+    <Resource Include="Images\EliteIcon.png" />
+    <Resource Include="Images\EventIcon.png" />
+    <Resource Include="Images\FightIcon.png" />
+    <Resource Include="Images\ShopIcon.png" />
+    <Resource Include="Images\TreasureIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Fody.4.2.1\build\Fody.targets" Condition="Exists('packages\Fody.4.2.1\build\Fody.targets')" />

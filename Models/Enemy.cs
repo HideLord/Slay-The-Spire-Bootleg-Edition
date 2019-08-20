@@ -10,8 +10,8 @@ namespace AlgoVis.Models
 	{
 		public int Mana { get; set; }
 		public int Health { get; set; }
-		public int AttackModifier { get; set; }
-		public int PoisonModifier { get; set; }
+		public double AttackModifier { get; set; }
+		public double PoisonModifier { get; set; }
 
 	}
 	public class Enemy

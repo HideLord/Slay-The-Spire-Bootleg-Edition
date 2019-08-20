@@ -14,3 +14,13 @@ C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\AlgoVis.csproj.CoreCompileInput
 C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\AlgoVis.csproj.Fody.CopyLocal.cache
 C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\AlgoVis.exe
 C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\AlgoVis.pdb
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\Pages\Game.g.cs
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\Pages\GameMenu.g.cs
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\Pages\MainMenu.g.cs
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\Pages\MapPage.g.cs
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\Pages\Shop.g.cs
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\Pages\Game.baml
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\Pages\GameMenu.baml
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\Pages\MainMenu.baml
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\Pages\MapPage.baml
+C:\Users\HideLord\source\repos\AlgoVis\obj\Debug\Pages\Shop.baml

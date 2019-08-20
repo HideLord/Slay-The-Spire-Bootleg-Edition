@@ -35,6 +35,11 @@ namespace AlgoVis.Models
 		{
 			throw new NotImplementedException();
 		}
+		/// <summary>
+		/// Binding of Isaac type map
+		/// The tree is bi-directional
+		/// </summary>
+		/// <returns> Tile which is the spawn point and the starting node of the map tree.</returns>
 		public static Tile GenerateMap(int NumTiles, int NumTreasures, int NumElites)
 		{
 			Debug.Assert(NumTiles > NumElites+NumTreasures+1); // Check if the number of tiles can contain all of the Elites, Treasures and the final boss
@@ -101,6 +106,140 @@ namespace AlgoVis.Models
 			return Spawn;
 		}
 
+		delegate void PlaceOnMap(int Entities, int EntCode);
+
+		public static Tile GenerateMapSpire(int levels, int maxTilesPerLevel, int numElites, int numTreasures, int numEvents)
+		{
+			Debug.Assert(2 * levels > numElites + numTreasures + numEvents);
+
+			Tile Spawn = new Tile();
+
+			List<List<int>> MapLayout = new List<List<int>>();
+			for (int _ = 0; _ < levels; _++)
+			{
+				MapLayout.Add(new List<int>());
+				int NumberOfNodesThisLevel = GenerateRandomInt(2, 6); // [2;5]
+				for (int j = 0; j < NumberOfNodesThisLevel; j++) MapLayout.Last().Add(1);
+			}
+
+			PlaceOnMap placeLambda = delegate (int numEntities, int EntCode) {
+				for (int _ = 0; _ < numEntities; _++)
+				{
+					while (true)
+					{
+						int SpawnOnLevel = GenerateRandomInt(0, levels);
+						//Check if level has free spot
+						bool isFree = false;
+						for (int i = 0; i < MapLayout[SpawnOnLevel].Count; i++) if (MapLayout[SpawnOnLevel][i] == 1) isFree = true;
+						if (!isFree) continue;
+						while (isFree)
+						{
+							int SpawnOnNode = GenerateRandomInt(0, MapLayout[SpawnOnLevel].Count);
+							if (MapLayout[SpawnOnLevel][SpawnOnNode] == 1)
+							{
+								MapLayout[SpawnOnLevel][SpawnOnNode] = EntCode;
+								break;
+							}
+						}
+						break;
+					}
+				}
+			};
+
+			placeLambda(numTreasures, 2);
+			placeLambda(numEvents, 3);
+			placeLambda(numElites, 4);
+
+			List<Tile> PrevLevel = new List<Tile>();
+
+			for (int level = 0; level < levels; level++)
+			{
+				List<Tile> CurrLevel = new List<Tile>();
+
+				for (int i = 0; i < MapLayout[level].Count; i++)
+				{
+					switch(MapLayout[level][i]){
+						case 1:
+							CurrLevel.Add(new EnemyTile());
+							break;
+						case 2:
+							CurrLevel.Add(new TreasureTile());
+							break;
+						case 3:
+							CurrLevel.Add(new EventTile());
+							break;
+						case 4:
+							CurrLevel.Add(new EliteTile());
+							break;
+					}
+				}
+
+				if (level == 0)
+				{
+					for(int i = 0; i < CurrLevel.Count(); i++)
+					{
+						Spawn.Neighbours.Add(CurrLevel[0]);
+					}
+				}
+				else
+				{
+					double coef = CurrLevel.Count / PrevLevel.Count;
+					List<bool> CurrLevelConn = new List<bool>(CurrLevel.Count);
+					for (int i = 0; i < CurrLevel.Count; i++) CurrLevelConn.Add(false);
+
+					int maxForward = 0;
+
+					for (int i = 0; i < PrevLevel.Count; i++)
+					{
+						bool isConn = false;
+						int prev = (int)Math.Round((i - 1) * coef);
+						int curr = (int)Math.Round(i* coef);
+						int next = Math.Max(1,(int)Math.Round((i + 1) * coef));
+
+						if(maxForward <= prev && prev > 0)
+						{
+							maxForward = prev;
+							isConn = true;
+							CurrLevelConn[prev - 1] = true;
+
+							PrevLevel[i].Neighbours.Add(CurrLevel[prev - 1]);
+						}
+						if(maxForward <= curr && curr > 0)
+						{
+							if (!isConn || GenerateRandomInt(0, 2) == 1)
+							{
+								maxForward = curr;
+								isConn = true;
+								CurrLevelConn[curr - 1] = true;
+
+								PrevLevel[i].Neighbours.Add(CurrLevel[curr - 1]);
+							}
+						}
+						if (maxForward <= next)
+						{
+							if (!isConn || GenerateRandomInt(0, 2) == 1)
+							{
+								maxForward = next;
+								isConn = true;
+								CurrLevelConn[next - 1] = true;
+
+								PrevLevel[i].Neighbours.Add(CurrLevel[next - 1]);
+							}
+						}
+						Debug.Assert(isConn);
+					}
+				}
+				PrevLevel = CurrLevel;
+			}
+
+			BossTile TheBoss = new BossTile();
+			for(int i = 0; i < PrevLevel.Count; i++)
+			{
+				PrevLevel[i].Neighbours.Add(TheBoss);
+			}
+
+			return Spawn;
+		}
 
 	}
 }
