@@ -8,7 +8,83 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainMenu">
 
+    <Page.Resources>
+        <LinearGradientBrush x:Key="MainMenuButtonBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#AAFFFF00" Offset=".50"/>
+            <GradientStop Color="#00FFFF00" Offset="0.8"/>
+        </LinearGradientBrush>
+        <Style TargetType="Button" x:Key="MainMenuButtonStyle">
+            <Setter Property="Background" Value="{StaticResource MainMenuButtonBrush}"></Setter>
+            <Setter Property="Margin" Value="10 5"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" CornerRadius="5" BorderThickness="0" Background="#00FFFFFF" Margin="10 5">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 5 "/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource MainMenuButtonBrush}"/>
+                            </Trigger>
+                            <EventTrigger RoutedEvent="Button.MouseEnter">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                              Storyboard.TargetProperty="(Border.Opacity)"
+                                              From="0.0" To="1.0" Duration="0:0:0.15"/>
+                                            <ThicknessAnimationUsingKeyFrames 
+                                              Storyboard.TargetProperty="(ContentPresenter.Margin)">
+                                                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="10, 5" />
+                                                <SplineThicknessKeyFrame KeyTime="00:00:0.15" Value="20, 5" />
+                                            </ThicknessAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Button.MouseLeave">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                              Storyboard.TargetProperty="(Button.Opacity)"
+                                              To="1" Duration="0:0:0.1" />
+                                            <ThicknessAnimationUsingKeyFrames 
+                                              Storyboard.TargetProperty="(ContentPresenter.Margin)">
+                                                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="20, 5" />
+                                                <SplineThicknessKeyFrame KeyTime="00:00:0.1" Value="10, 5" />
+                                            </ThicknessAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                            
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="10*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Button Content = "Play" Style="{StaticResource MainMenuButtonStyle}" FontSize="15" FontFamily="Georgia"/>
+            <Button Content = "Abandon Run" Style="{StaticResource MainMenuButtonStyle}" FontSize="15" FontFamily="Georgia"/>
+            <Button Content = "Collection" Style="{StaticResource MainMenuButtonStyle}" FontSize="15"  FontFamily="Georgia"/>
+            <Button Content = "Statistics" Style="{StaticResource MainMenuButtonStyle}" FontSize="15"  FontFamily="Georgia"/>
+            <Button Content = "Settings" Style="{StaticResource MainMenuButtonStyle}" FontSize="15"    FontFamily="Georgia"/>
+            <Button Content = "Quit" Style="{StaticResource MainMenuButtonStyle}" FontSize="15"        FontFamily="Georgia"/>
+        </StackPanel>
     </Grid>
 </Page>

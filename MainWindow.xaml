@@ -5,23 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AlgoVis"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        KeyDown="OnKeyDownHandler"
-        KeyUp="OnKeyUpHandler">
+        Title="MainWindow" Height="720" Width="1280"
+        ResizeMode="NoResize"
+        Background="AliceBlue"
+        >
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MaxWidth="100"/>
-            <ColumnDefinition Width="5*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Background="LightGray">
-            <ListView x:Name="ListOfAlgs">
-                
-            </ListView>
-        </StackPanel>
+        <Frame Source="Pages/MainMenu.xaml" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
