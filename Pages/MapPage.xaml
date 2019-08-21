@@ -9,6 +9,7 @@
       Title="MapPage">
 
     <Grid>
-        
+        <Canvas x:Name="MapCanvas">
+        </Canvas>
     </Grid>
 </Page>

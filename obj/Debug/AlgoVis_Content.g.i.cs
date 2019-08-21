@@ -8,11 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bossicon.gif")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/eliteicon.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/eventicon.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/fighticon.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/shopicon.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/treasureicon.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/logobootleg.png")]
 
 

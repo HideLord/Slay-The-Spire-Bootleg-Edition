@@ -13,6 +13,17 @@
             <GradientStop Color="#AAFFFF00" Offset=".50"/>
             <GradientStop Color="#00FFFF00" Offset="0.8"/>
         </LinearGradientBrush>
+        <Style TargetType="Image" x:Key="FadeInBootleg">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Shape.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(Image.Opacity)" From="0.0" To="1.0" Duration="0:0:5"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="Button" x:Key="MainMenuButtonStyle">
             <Setter Property="Background" Value="{StaticResource MainMenuButtonBrush}"></Setter>
             <Setter Property="Margin" Value="10 5"></Setter>
@@ -86,5 +97,8 @@
             <Button Content = "Settings" Style="{StaticResource MainMenuButtonStyle}" FontSize="15"    FontFamily="Georgia"/>
             <Button Content = "Quit" Style="{StaticResource MainMenuButtonStyle}" FontSize="15"        FontFamily="Georgia"/>
         </StackPanel>
+        <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Source="../Images/Logo.png"></Image>
+        <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Source="../Images/LogoBootleg.png" Style="{StaticResource FadeInBootleg}"></Image>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Version 1e15+inf[nan]" Margin="0 20 0 0" Foreground="LightGray"/>
     </Grid>
 </Page>
