@@ -40,6 +40,7 @@ namespace AlgoVis.Models
 		/// The tree is bi-directional
 		/// </summary>
 		/// <returns> Tile which is the spawn point and the starting node of the map tree.</returns>
+		[Obsolete]
 		public static Tile GenerateMap(int NumTiles, int NumTreasures, int NumElites)
 		{
 			Debug.Assert(NumTiles > NumElites+NumTreasures+1); // Check if the number of tiles can contain all of the Elites, Treasures and the final boss
@@ -110,7 +111,7 @@ namespace AlgoVis.Models
 
 		public static Tile GenerateMapSpire(int levels, int maxTilesPerLevel, int numElites, int numTreasures, int numEvents)
 		{
-			Debug.Assert(2 * levels > numElites + numTreasures + numEvents);
+			Debug.Assert(2 * levels >= numElites + numTreasures + numEvents);
 
 			Tile Spawn = new Tile();
 
@@ -161,15 +162,23 @@ namespace AlgoVis.Models
 					switch(MapLayout[level][i]){
 						case 1:
 							CurrLevel.Add(new EnemyTile());
+							CurrLevel.Last().LayerInd = level;
+							CurrLevel.Last().NodeInd = i;
 							break;
 						case 2:
 							CurrLevel.Add(new TreasureTile());
+							CurrLevel.Last().LayerInd = level;
+							CurrLevel.Last().NodeInd = i;
 							break;
 						case 3:
 							CurrLevel.Add(new EventTile());
+							CurrLevel.Last().LayerInd = level;
+							CurrLevel.Last().NodeInd = i;
 							break;
 						case 4:
 							CurrLevel.Add(new EliteTile());
+							CurrLevel.Last().LayerInd = level;
+							CurrLevel.Last().NodeInd = i;
 							break;
 					}
 				}
@@ -178,56 +187,113 @@ namespace AlgoVis.Models
 				{
 					for(int i = 0; i < CurrLevel.Count(); i++)
 					{
-						Spawn.Neighbours.Add(CurrLevel[0]);
+						Spawn.Neighbours.Add(CurrLevel[i]);
 					}
 				}
-				else
+				else if(CurrLevel.Count < PrevLevel.Count)
 				{
-					double coef = CurrLevel.Count / PrevLevel.Count;
+					double coef = (double)CurrLevel.Count / (double)PrevLevel.Count;
 					List<bool> CurrLevelConn = new List<bool>(CurrLevel.Count);
 					for (int i = 0; i < CurrLevel.Count; i++) CurrLevelConn.Add(false);
 
 					int maxForward = 0;
 
-					for (int i = 0; i < PrevLevel.Count; i++)
+					for (int i = 1; i <= PrevLevel.Count; i++)
 					{
 						bool isConn = false;
 						int prev = (int)Math.Round((i - 1) * coef);
-						int curr = (int)Math.Round(i* coef);
-						int next = Math.Max(1,(int)Math.Round((i + 1) * coef));
+						int curr = (int)Math.Round(i * coef);
+						int next = Math.Max(1, (int)Math.Round((i + 1) * coef));
 
 						if(maxForward <= prev && prev > 0)
 						{
-							maxForward = prev;
-							isConn = true;
-							CurrLevelConn[prev - 1] = true;
+							if (GenerateRandomInt(0, 2) == 1 || !CurrLevelConn[prev - 1])
+							{
+								maxForward = prev;
+								isConn = true;
+								CurrLevelConn[prev - 1] = true;
 
-							PrevLevel[i].Neighbours.Add(CurrLevel[prev - 1]);
+								PrevLevel[i - 1].Neighbours.Add(CurrLevel[prev - 1]);
+							}
 						}
-						if(maxForward <= curr && curr > 0)
+						if(maxForward <= curr && curr > 0 && curr <= CurrLevel.Count)
 						{
-							if (!isConn || GenerateRandomInt(0, 2) == 1)
+							if (!isConn || GenerateRandomInt(0, 2) == 1 || !CurrLevelConn[curr-1])
 							{
 								maxForward = curr;
 								isConn = true;
 								CurrLevelConn[curr - 1] = true;
 
-								PrevLevel[i].Neighbours.Add(CurrLevel[curr - 1]);
+								PrevLevel[i-1].Neighbours.Add(CurrLevel[curr - 1]);
 							}
 						}
-						if (maxForward <= next)
+						if (maxForward <= next && next <= CurrLevel.Count)
 						{
-							if (!isConn || GenerateRandomInt(0, 2) == 1)
+							if (!isConn || GenerateRandomInt(0, 2) == 1 || !CurrLevelConn[curr - 1])
 							{
 								maxForward = next;
 								isConn = true;
 								CurrLevelConn[next - 1] = true;
 
-								PrevLevel[i].Neighbours.Add(CurrLevel[next - 1]);
+								PrevLevel[i-1].Neighbours.Add(CurrLevel[next - 1]);
 							}
 						}
 						Debug.Assert(isConn);
 					}
+
+					//for (int i = 0; i < CurrLevelConn.Count; i++) Debug.Assert(CurrLevelConn[i]);
+				} else
+				{
+					double coef = (double)PrevLevel.Count / (double)CurrLevel.Count;
+					List<bool> PrevLevelConn = new List<bool>(PrevLevel.Count);
+					for (int i = 0; i < PrevLevel.Count; i++) PrevLevelConn.Add(false);
+
+					int maxForward = 0;
+
+					for (int i = 1; i <= CurrLevel.Count; i++)
+					{
+						bool isConn = false;
+						int prev = (int)Math.Round((i - 1) * coef);
+						int curr = (int)Math.Round(i * coef);
+						int next = Math.Max(1, (int)Math.Round((i + 1) * coef));
+
+						if (maxForward <= prev && prev > 0)
+						{
+							if (GenerateRandomInt(0, 2) == 1 || !PrevLevelConn[prev - 1])
+							{
+								maxForward = prev;
+								isConn = true;
+								PrevLevelConn[prev - 1] = true;
+
+								PrevLevel[prev - 1].Neighbours.Add(CurrLevel[i - 1]);
+							}
+						}
+						if (maxForward <= curr && curr > 0 && curr <= PrevLevel.Count)
+						{
+							if (!isConn || GenerateRandomInt(0, 2) == 1 || !PrevLevelConn[curr - 1])
+							{
+								maxForward = curr;
+								isConn = true;
+								PrevLevelConn[curr - 1] = true;
+
+								PrevLevel[curr - 1].Neighbours.Add(CurrLevel[i - 1]);
+							}
+						}
+						if (maxForward <= next && next <= PrevLevel.Count)
+						{
+							if (!isConn || GenerateRandomInt(0, 2) == 1 || !PrevLevelConn[curr - 1])
+							{
+								maxForward = next;
+								isConn = true;
+								PrevLevelConn[next - 1] = true;
+
+								PrevLevel[next - 1].Neighbours.Add(CurrLevel[i - 1]);
+							}
+						}
+						Debug.Assert(isConn);
+					}
+
+					//for (int i = 0; i < CurrLevelConn.Count; i++) Debug.Assert(CurrLevelConn[i]);
 				}
 				PrevLevel = CurrLevel;
 			}

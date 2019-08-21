@@ -22,10 +22,25 @@ namespace AlgoVis.Pages
 	{
 		public ViewModels.MapViewModel Map;
 
+		public MapPage()
+		{
+			InitializeComponent();
+			Map = new ViewModels.MapViewModel();
+			drawMap();
+		}
+
 		public MapPage(ViewModels.MapViewModel Map)
 		{
 			InitializeComponent();
 			this.Map = Map;
+		}
+
+		public void drawMap()
+		{
+			for(var i = 0; i < Map.CanvasNodes.Count; i++)
+			{
+				drawNode(Map.CanvasNodes[i].X, Map.CanvasNodes[i].Y, Map.CanvasNodes[i].ImageSource);
+			}
 		}
 
 		/// <summary>
@@ -33,9 +48,16 @@ namespace AlgoVis.Pages
 		/// </summary>
 		/// <param name="x"> X coord </param>
 		/// <param name="y"> Y coord </param>
-		void drawNode(int x, int y, string uri)
+		void drawNode(double x, double y, string uri)
 		{
-
+			Button NodeButton = new Button();
+			Image NodeSprite = new Image();
+			NodeSprite.Source = new BitmapImage(new Uri("../"+uri, UriKind.Relative));
+			NodeButton.Content = NodeSprite;
+			NodeButton.RenderTransform = new TranslateTransform(x, y);
+			NodeButton.Background = new SolidColorBrush(Colors.Transparent);
+			NodeButton.BorderBrush = new SolidColorBrush(Colors.Transparent);
+			MapCanvas.Children.Add(NodeButton);
 		}
 	}
 }

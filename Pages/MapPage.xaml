@@ -9,7 +9,9 @@
       Title="MapPage">
 
     <Grid>
-        <Canvas x:Name="MapCanvas">
-        </Canvas>
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
+            <Canvas x:Name="MapCanvas" Height="5000" Width="5000">
+            </Canvas>
+        </ScrollViewer>
     </Grid>
 </Page>

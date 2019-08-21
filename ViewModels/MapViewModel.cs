@@ -7,37 +7,103 @@ using System.Threading.Tasks;
 
 namespace AlgoVis.ViewModels
 {
+	/// <summary>
+	/// A simple class to hold info about a node
+	/// </summary>
 	public class CanvasNode
 	{
-		public int x { get; set; }
-		public int y { get; set; }
-		public string uri { get; set; }
+		/// <summary>
+		/// X and Y coordinates
+		/// </summary>
+		public double X { get; set; }
+		public double Y { get; set; }
+		/// <summary>
+		/// The image source for the node
+		/// </summary>
+		public string ImageSource { get; set; }
 	}
 
 	public class MapViewModel : BaseViewModel
 	{
-		/// <summary>
-		/// Absolutely not sure if this will work or not! Needs testing...
-		/// </summary>
-		public Tile LevelMap { get; set; } // = Generator.GenerateMap(10, 1, 1);
+		private static double NodeSpace = 64;
+		private static double MapPadding = 64;
+		private static double NodeMargin = 64;
+		private static double LayerSpace = 128;
+
+		public Tile LevelMap { get; set; }
 		public List<CanvasNode> CanvasNodes { get; set; }
+
 		public MapViewModel()
 		{
 			LevelMap = Generator.GenerateMapSpire(16, 5, 4, 5, 10);
+			CanvasNodes = new List<CanvasNode>();
+			GenerateCanvasLayout();
+		}
+		public MapViewModel(Tile LevelMap)
+		{
+			this.LevelMap = LevelMap;
+			CanvasNodes = new List<CanvasNode>();
 			GenerateCanvasLayout();
 		}
 
 		/// <summary>
-		/// Traverses the map tree and lays out the map
+		/// Traverses the map tree and lays out the map for the canvas
 		/// </summary>
 		private void GenerateCanvasLayout()
 		{
-			Stack<KeyValuePair<Tile, int>> TileStack = new Stack<KeyValuePair<Tile, int>>();
-			TileStack.Push(new KeyValuePair<Tile, int>(LevelMap,0));
+			Queue<KeyValuePair<Tile, int>> TileStack = new Queue<KeyValuePair<Tile, int>>();
+			TileStack.Enqueue(new KeyValuePair<Tile, int>(LevelMap,0));
+			bool[,] used = new bool[100,100];
 			while (TileStack.Count != 0)
 			{
+				var curr = TileStack.Dequeue();
 
+				var currTile  = curr.Key;
+				var currdepth = curr.Value;
+				var currCanvasNode = new CanvasNode();
+
+				for(var i = 0; i < currTile.Neighbours.Count; i++)
+				{
+					if (used[currTile.Neighbours[i].LayerInd, currTile.Neighbours[i].NodeInd]) continue;
+					used[currTile.Neighbours[i].LayerInd, currTile.Neighbours[i].NodeInd] = true;
+					TileStack.Enqueue(new KeyValuePair<Tile,int>(currTile.Neighbours[i], currdepth+1));
+				}
+
+				currCanvasNode.X = (currTile.NodeInd * (NodeSpace + NodeMargin)) + MapPadding;
+				currCanvasNode.Y = (currTile.LayerInd * LayerSpace) + MapPadding;
+
+				if (currTile.GetType() == typeof(EnemyTile))
+				{
+					currCanvasNode.ImageSource = "Images/FightIcon.png";
+				}
+				else if (currTile.GetType() == typeof(EliteTile))
+				{
+					currCanvasNode.ImageSource = "Images/EliteIcon.png";
+				}
+				else if (currTile.GetType() == typeof(TreasureTile))
+				{
+					currCanvasNode.ImageSource = "Images/TreasureIcon.png";
+				}
+				else if (currTile.GetType() == typeof(EventTile))
+				{
+					currCanvasNode.ImageSource = "Images/EventIcon.png";
+				}
+				else if (currTile.GetType() == typeof(BossTile))
+				{
+					currCanvasNode.ImageSource = "Images/BossIcon.png";
+				}
+				else if (currTile.GetType() == typeof(Tile))
+				{
+					currCanvasNode.ImageSource = "Images/FightIcon.png";
+				}
+				else
+				{
+					throw new Exception("Unexpected class while traversing map" + currTile.GetType().ToString());
+				}
+
+				CanvasNodes.Add(currCanvasNode);
 			}
 		}
+
 	}
 }
