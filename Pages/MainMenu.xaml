@@ -90,7 +90,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <Button Content = "Play" Style="{StaticResource MainMenuButtonStyle}" FontSize="15" FontFamily="Georgia"/>
+            <Button Content = "Play" Style="{StaticResource MainMenuButtonStyle}" FontSize="15"        FontFamily="Georgia" Click="PlayButton_click"/>
             <Button Content = "Abandon Run" Style="{StaticResource MainMenuButtonStyle}" FontSize="15" FontFamily="Georgia"/>
             <Button Content = "Collection" Style="{StaticResource MainMenuButtonStyle}" FontSize="15"  FontFamily="Georgia"/>
             <Button Content = "Statistics" Style="{StaticResource MainMenuButtonStyle}" FontSize="15"  FontFamily="Georgia"/>

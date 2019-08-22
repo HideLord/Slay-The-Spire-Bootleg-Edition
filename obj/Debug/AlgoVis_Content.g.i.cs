@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/logobootleg.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/choiceicons/ironcladchoiceiconlight.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/choiceicons/lockedcharactericonlight.png")]
 
 

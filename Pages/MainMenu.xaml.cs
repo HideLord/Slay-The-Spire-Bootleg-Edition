@@ -24,6 +24,12 @@ namespace AlgoVis.Pages
 		public MainMenu()
 		{
 			InitializeComponent();
+
+		}
+
+		private void PlayButton_click(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

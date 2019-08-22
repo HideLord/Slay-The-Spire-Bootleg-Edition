@@ -11,6 +11,6 @@
         >
 
     <Grid>
-        <Frame Source="Pages/MapPage.xaml" NavigationUIVisibility="Hidden"/>
+        <Frame Source="Pages/CharacterSelectPage.xaml" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

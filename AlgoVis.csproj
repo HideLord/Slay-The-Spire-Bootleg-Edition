@@ -73,6 +73,9 @@
     <Compile Include="Models\Tile.cs" />
     <Compile Include="Models\TreasureTile.cs" />
     <Compile Include="Models\Trinket.cs" />
+    <Compile Include="Pages\CharacterSelectPage.xaml.cs">
+      <DependentUpon>CharacterSelectPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Game.xaml.cs">
       <DependentUpon>Game.xaml</DependentUpon>
     </Compile>
@@ -102,6 +105,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\CharacterSelectPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Game.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,18 +158,32 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\BossIcon.gif" />
-    <Resource Include="Images\EliteIcon.png" />
-    <Resource Include="Images\EventIcon.png" />
-    <Resource Include="Images\FightIcon.png" />
-    <Resource Include="Images\ShopIcon.png" />
-    <Resource Include="Images\TreasureIcon.png" />
+    <Resource Include="Images\MapIcons\BossIcon.gif" />
+    <Resource Include="Images\MapIcons\EliteIcon.png" />
+    <Resource Include="Images\MapIcons\EventIcon.png" />
+    <Resource Include="Images\MapIcons\FightIcon.png" />
+    <Resource Include="Images\MainMenuLogos\Logo.png" />
+    <Resource Include="Images\MainMenuLogos\LogoBootleg.png" />
+    <Resource Include="Images\MapIcons\ShopIcon.png" />
+    <Resource Include="Images\MapIcons\TreasureIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Logo.png" />
+    <Resource Include="Images\MapIcons\EnemyIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\LogoBootleg.png" />
+    <Resource Include="Images\Characters\Defect.png" />
+    <Resource Include="Images\Characters\Ironclad.png" />
+    <Resource Include="Images\Characters\Silent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ChoiceIcons\IroncladChoiceIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ChoiceIcons\LockedCharacterIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ChoiceIcons\IroncladChoiceIconLight.png" />
+    <Resource Include="Images\ChoiceIcons\LockedCharacterIconLight.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Fody.4.2.1\build\Fody.targets" Condition="Exists('packages\Fody.4.2.1\build\Fody.targets')" />

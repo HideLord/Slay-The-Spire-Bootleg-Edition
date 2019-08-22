@@ -1,6 +1,7 @@
 ﻿using AlgoVis.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,7 +54,8 @@ namespace AlgoVis.ViewModels
 		{
 			Queue<KeyValuePair<Tile, int>> TileStack = new Queue<KeyValuePair<Tile, int>>();
 			TileStack.Enqueue(new KeyValuePair<Tile, int>(LevelMap,0));
-			bool[,] used = new bool[100,100];
+			bool[,] used = new bool[500,500];
+
 			while (TileStack.Count != 0)
 			{
 				var curr = TileStack.Dequeue();
@@ -74,7 +76,7 @@ namespace AlgoVis.ViewModels
 
 				if (currTile.GetType() == typeof(EnemyTile))
 				{
-					currCanvasNode.ImageSource = "Images/FightIcon.png";
+					currCanvasNode.ImageSource = "Images/EnemyIcon.png";
 				}
 				else if (currTile.GetType() == typeof(EliteTile))
 				{
@@ -94,7 +96,8 @@ namespace AlgoVis.ViewModels
 				}
 				else if (currTile.GetType() == typeof(Tile))
 				{
-					currCanvasNode.ImageSource = "Images/FightIcon.png";
+					// This is the spawn tile and should be ignored
+					continue;
 				}
 				else
 				{
