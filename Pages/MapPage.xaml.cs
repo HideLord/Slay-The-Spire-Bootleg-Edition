@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AlgoVis.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,9 +38,33 @@ namespace AlgoVis.Pages
 
 		public void drawMap()
 		{
-			for(var i = 0; i < Map.CanvasNodes.Count; i++)
+			for (var i = 0; i < Map.CanvasNodes.Count; i++)
 			{
-				drawNode(Map.CanvasNodes[i].X, Map.CanvasNodes[i].Y, Map.CanvasNodes[i].ImageSource);
+				for (var j = 0; j < Map.CanvasNodes[i].Count; j++)
+				{
+					drawPaths(Map.CanvasNodes[i][j]);
+				}
+			}
+			for (var i = 0; i < Map.CanvasNodes.Count; i++)
+			{
+				for (var j = 0; j < Map.CanvasNodes[i].Count; j++) {
+					drawNode(Map.CanvasNodes[i][j].X, Map.CanvasNodes[i][j].Y, Map.CanvasNodes[i][j].ImageSource);
+				}
+			}
+		}
+
+		void drawPaths(CanvasNode node)
+		{
+			for(int i = 0; i < node.Neighbours.Count; i++)
+			{
+				Line line = new Line();
+				line.StrokeThickness = 4;
+				line.Stroke = System.Windows.Media.Brushes.Black;
+				line.X1 = node.X + 32;
+				line.X2 = node.Neighbours[i].X + 32;
+				line.Y1 = node.Y + 32;
+				line.Y2 = node.Neighbours[i].Y + 32;
+				MapCanvas.Children.Add(line);
 			}
 		}
 

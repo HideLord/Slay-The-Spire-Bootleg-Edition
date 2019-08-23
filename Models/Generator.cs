@@ -299,7 +299,9 @@ namespace AlgoVis.Models
 			}
 
 			BossTile TheBoss = new BossTile();
-			for(int i = 0; i < PrevLevel.Count; i++)
+			TheBoss.LayerInd = levels;
+			TheBoss.NodeInd = 0;
+			for (int i = 0; i < PrevLevel.Count; i++)
 			{
 				PrevLevel[i].Neighbours.Add(TheBoss);
 			}

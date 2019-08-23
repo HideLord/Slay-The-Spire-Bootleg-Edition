@@ -26,7 +26,7 @@ namespace AlgoVis.Pages
 			InitializeComponent();
 		}
 
-		private void ChangeToLightIcon(object sender, MouseEventArgs e)
+		private void ChangeToLight(object sender, MouseEventArgs e)
 		{
 			Image Icon = sender as Image;
 			if(Icon != null)
@@ -39,7 +39,7 @@ namespace AlgoVis.Pages
 				Icon.Source = BitmapFrame.Create(new Uri(SourceString));
 			}
 		}
-		private void ChangeToNormalIcon(object sender, MouseEventArgs e)
+		private void ChangeToNormal(object sender, MouseEventArgs e)
 		{
 			Image Icon = sender as Image;
 			if (Icon != null)

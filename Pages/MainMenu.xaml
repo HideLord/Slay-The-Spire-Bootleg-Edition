@@ -97,8 +97,8 @@
             <Button Content = "Settings" Style="{StaticResource MainMenuButtonStyle}" FontSize="15"    FontFamily="Georgia"/>
             <Button Content = "Quit" Style="{StaticResource MainMenuButtonStyle}" FontSize="15"        FontFamily="Georgia"/>
         </StackPanel>
-        <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Source="../Images/Logo.png"></Image>
-        <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Source="../Images/LogoBootleg.png" Style="{StaticResource FadeInBootleg}"></Image>
+        <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Source="../Images/MainMenuLogos/Logo.png"></Image>
+        <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Source="../Images/MainMenuLogos/LogoBootleg.png" Style="{StaticResource FadeInBootleg}"></Image>
         <TextBlock Grid.Row="2" Grid.Column="1" Text="Version 1e15+inf[nan]" Margin="0 20 0 0" Foreground="LightGray"/>
     </Grid>
 </Page>

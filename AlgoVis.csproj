@@ -185,6 +185,10 @@
     <Resource Include="Images\ChoiceIcons\IroncladChoiceIconLight.png" />
     <Resource Include="Images\ChoiceIcons\LockedCharacterIconLight.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MiscButtons\BannerBackButton.png" />
+    <Resource Include="Images\MiscButtons\BannerBackButtonLight.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Fody.4.2.1\build\Fody.targets" Condition="Exists('packages\Fody.4.2.1\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

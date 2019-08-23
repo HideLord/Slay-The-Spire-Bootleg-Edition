@@ -8,6 +8,7 @@
       d:DesignHeight="720" d:DesignWidth="1280"
       Title="CharacterSelectPage">
     <Page.Resources>
+        
         <Style x:Key="ChoiceButton" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -25,7 +26,7 @@
             </Setter>
         </Style>
     </Page.Resources>
-    <Grid>
+    <Grid Background="#444">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="4*"/>
@@ -40,17 +41,26 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image  Source="../Images/MiscButtons/BannerBackButton.png" MouseEnter="ChangeToLight" MouseLeave="ChangeToNormal"/>
+        </Grid>
+
         <Image Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Source="../Images/Characters/Ironclad.png"/>
         <Image Grid.Row="1" Grid.Column="3" Source="../Images/Characters/Silent.png"/>
         <Image Grid.Row="1" Grid.Column="4" Source="../Images/Characters/Defect.png"/>
         <Button Grid.Row="2" Grid.Column="2" Margin="60 0" Style="{StaticResource ChoiceButton}">
-            <Image Source="../Images/ChoiceIcons/IroncladChoiceIcon.png" MouseEnter="ChangeToLightIcon" MouseLeave="ChangeToNormalIcon"/>
+            <Image Source="../Images/ChoiceIcons/IroncladChoiceIcon.png" MouseEnter="ChangeToLight" MouseLeave="ChangeToNormal"/>
         </Button>
         <Button Grid.Row="2" Grid.Column="3" Margin="60 0" Style="{StaticResource ChoiceButton}">
-            <Image Source="../Images/ChoiceIcons/LockedCharacterIcon.png" MouseEnter="ChangeToLightIcon" MouseLeave="ChangeToNormalIcon"/>
+            <Image Source="../Images/ChoiceIcons/LockedCharacterIcon.png" MouseEnter="ChangeToLight" MouseLeave="ChangeToNormal"/>
         </Button>
         <Button Grid.Row="2" Grid.Column="4" Margin="60 0" Style="{StaticResource ChoiceButton}">
-            <Image Source="../Images/ChoiceIcons/LockedCharacterIcon.png" MouseEnter="ChangeToLightIcon" MouseLeave="ChangeToNormalIcon"/>
+            <Image Source="../Images/ChoiceIcons/LockedCharacterIcon.png" MouseEnter="ChangeToLight" MouseLeave="ChangeToNormal"/>
         </Button>
     </Grid>
 </Page>

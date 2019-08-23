@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/choiceicons/ironcladchoiceiconlight.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/choiceicons/lockedcharactericonlight.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/miscbuttons/bannerbackbutton.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/miscbuttons/bannerbackbuttonlight.png")]
 
 
