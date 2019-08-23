@@ -1,4 +1,5 @@
-﻿using AlgoVis.ViewModels;
+﻿using AlgoVis.Models;
+using AlgoVis.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,7 +65,36 @@ namespace AlgoVis.Pages
 				line.X2 = node.Neighbours[i].X + 32;
 				line.Y1 = node.Y + 32;
 				line.Y2 = node.Neighbours[i].Y + 32;
+				line.StrokeDashArray = new DoubleCollection();
+				line.StrokeDashArray.Add(2);
+				line.StrokeDashArray.Add(2);
 				MapCanvas.Children.Add(line);
+
+				double low = 0, high = 1, mid;
+				double d = Math.Sqrt((line.X1 - line.X2) * (line.X1 - line.X2) + (line.Y1 - line.Y2) * (line.Y1 - line.Y2));
+
+				double normx1 = line.X1 - Math.Min(line.X1, line.X2);
+				double normx2 = line.X2 - Math.Min(line.X1, line.X2);
+				double normy1 = line.Y1 - Math.Min(line.Y1, line.Y2);
+				double normy2 = line.Y2 - Math.Min(line.Y1, line.Y2);
+
+				while (Math.Abs(low-high)>0.000001)
+				{
+					mid = (low + high) / 2.0;
+					if (d * mid < MapViewModel.NodeSpace/2.0) low = mid;
+					else if (d * mid > MapViewModel.NodeSpace/2.0) high = mid;
+					else low = high = mid; 
+				}
+
+				if (normx1 < normx2) line.X2 -= normx2 * low;
+				else line.X2 += normx1 * low;
+				if (normx1 < normx2) line.X1 += normx2 * low;
+				else line.X1 -= normx1 * low;
+
+				if (normy1 < normy2) line.Y1 += normy2 * low;
+				else line.Y2 -= normy1 * low;
+				if (normy1 < normy2) line.Y2 -= normy2 * low;
+				else line.Y2 += normy1 * low;
 			}
 		}
 

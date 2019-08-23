@@ -9,40 +9,14 @@ using System.Threading.Tasks;
 namespace AlgoVis.ViewModels
 {
 	/// <summary>
-	/// A simple class to hold info about a node
+	/// Map view model containing the Spawn tile and the map layout inside the list of lists of canvas nodes which are viewmodels unto themselves
 	/// </summary>
-	public class CanvasNode
-	{
-		/// <summary>
-		/// X and Y coordinates
-		/// </summary>
-		public double X { get; set; }
-		public double Y { get; set; }
-		/// <summary>
-		/// The image source for the node
-		/// </summary>
-		public string ImageSource { get; set; }
-		/// <summary>
-		/// The model of the node
-		/// </summary>
-		public Tile Model;
-		/// <summary>
-		/// The neighbouring nodes in the map
-		/// </summary>
-		public List<CanvasNode> Neighbours;
-
-		public CanvasNode()
-		{
-			Neighbours = new List<CanvasNode>();
-		}
-	}
-
 	public class MapViewModel : BaseViewModel
 	{
-		private static double NodeSpace = 64;
-		private static double MapPadding = 64;
-		private static double NodeMargin = 64;
-		private static double LayerSpace = 192;
+		public static double NodeSpace = 64;
+		public static double MapPadding = 64;
+		public static double NodeMargin = 64;
+		public static double LayerSpace = 192;
 
 		public Tile LevelMap { get; set; }
 		public List<List<CanvasNode>> CanvasNodes { get; set; }
@@ -138,10 +112,7 @@ namespace AlgoVis.ViewModels
 						{
 							// HAHA good luck getting this one future me!
 							currNode.Neighbours.Add(CanvasNodes[currNode.Model.Neighbours[i].LayerInd][currNode.Model.Neighbours[i].NodeInd]);
-							if(currNode.Model.Neighbours[i].LayerInd == 0 && currNode.Model.Neighbours[i].NodeInd == 0)
-							{
-
-							}
+							
 						}
 					}
 				}

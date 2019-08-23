@@ -92,6 +92,7 @@
       <DependentUpon>Shop.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CanvasNode.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -35,6 +35,15 @@ namespace AlgoVis.Models
 		{
 			throw new NotImplementedException();
 		}
+
+		public static void Swap<T>(ref T lhs, ref T rhs)
+		{
+			T temp;
+			temp = lhs;
+			lhs = rhs;
+			rhs = temp;
+		}
+
 		/// <summary>
 		/// Binding of Isaac type map
 		/// The tree is bi-directional
